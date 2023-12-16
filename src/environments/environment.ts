@@ -1,11 +1,6 @@
+import { TEnvironment } from "./TEnvironment";
 
-export type Environment = {
-    production: boolean;
-    auth0Domain: string;
-    auth0ClientId: string
-}
-
-export const environment: Environment = {
+export const environment: TEnvironment = {
     production: false,
     auth0Domain: '',
     auth0ClientId: ''
