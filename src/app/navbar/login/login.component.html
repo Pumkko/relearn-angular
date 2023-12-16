@@ -1,0 +1,14 @@
+
+
+
+
+@if( user$ | async; as user ){
+    {{user.name}}
+}
+
+@if( isAuthenticated$ | async; as isAuthenticated) {
+    <button (click)="logout()">Logout</button>
+} @else {
+    <button (click)="login()">Login</button>
+}
+
