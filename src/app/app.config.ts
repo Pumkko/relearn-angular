@@ -7,19 +7,17 @@ import { QueryClient, provideAngularQuery } from '@tanstack/angular-query-experi
 import { provideAuth0 } from '@auth0/auth0-angular';
 import { environment } from '../environments/environment';
 
-
-
 export const appConfig: ApplicationConfig = {
-  providers: [provideHttpClient(),
-  provideRouter(routes),
-  provideAuth0({
-    domain: environment.auth0Domain,
-    clientId: environment.auth0ClientId,
-    authorizationParams: {
-      redirect_uri: window.location.origin
-    }
-  }),
-  provideAngularQuery(new QueryClient()),
-
+  providers: [
+    provideHttpClient(),
+    provideRouter(routes),
+    provideAuth0({
+      domain: environment.auth0Domain,
+      clientId: environment.auth0ClientId,
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      }
+    }),
+    provideAngularQuery(new QueryClient()),
   ]
 };
