@@ -3,11 +3,25 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.1.
 
 ## What did I Learn
-### OnPush 
+### ChangeStrategy.OnPush 
 Played with OnPush a bit and learn the following thing : 
  - If component A is a parent of component B, and B has an input of a complex type, when A updates B might not see the changes if the reference to the complex type in A is the same
  - If A and B are not related to each other and are sharing data through a service, then that service can use signal() so that when A calls the service to write a new value, B can be rerendered
  Kept the code in playWithOnPush if i ever want to play with it again
+
+### Deploy to Azure
+Soooo i struggled a bit with that one :
+Azure Static Webapp : very easy to setup i only had to change `output_location: "dist/relearn-angular/browser`
+otherwise fairly easy i did try to make it use pnpm but without success
+
+Azure Webapp : a bit more difficult, i had to : 
+Remove call to `pnpm run test` because it required Chrome to run and i did not want to fix that right now
+Change `zip release.zip ./* -r` to `zip release.zip ./dist/* -r` because it was putting EVERYTHING into the zip including node_modules
+Update `package: ./dist/relearn-angular/browser` so it points to the right folder
+Setup PNPM found a [github repo that explained it](https://github.com/pnpm/action-setup)
+Also i needed to serve static file so i followed [this guide](https://nicolgit.github.io/how-deploy-angular-app-to-azure-appservice-running-linux-from-github/)  
+I basically needed to set this startup command under Configuration/General Settings in the web app
+`pm2 serve /home/site/wwwroot --no-daemon --spa`
 
 ## Development server
 
