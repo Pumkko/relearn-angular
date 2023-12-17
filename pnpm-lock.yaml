@@ -32,6 +32,12 @@ dependencies:
   '@auth0/auth0-angular':
     specifier: ^2.2.2
     version: 2.2.2(@angular/common@17.0.7)(@angular/core@17.0.7)(@angular/router@17.0.7)
+  '@ngx-translate/core':
+    specifier: ^15.0.0
+    version: 15.0.0(@angular/common@17.0.7)(@angular/core@17.0.7)(rxjs@7.8.1)
+  '@ngx-translate/http-loader':
+    specifier: ^8.0.0
+    version: 8.0.0(@angular/common@17.0.7)(@angular/core@17.0.7)(@ngx-translate/core@15.0.0)(rxjs@7.8.1)
   '@tanstack/angular-query-experimental':
     specifier: ^5.14.0
     version: 5.14.0(@angular/common@17.0.7)(@angular/core@17.0.7)(@use-gesture/vanilla@10.3.0)(rxjs@7.8.1)
@@ -2205,6 +2211,34 @@ packages:
       typescript: 5.2.2
       webpack: 5.89.0(esbuild@0.19.5)
     dev: true
+
+  /@ngx-translate/core@15.0.0(@angular/common@17.0.7)(@angular/core@17.0.7)(rxjs@7.8.1):
+    resolution: {integrity: sha512-Am5uiuR0bOOxyoercDnAA3rJVizo4RRqJHo8N3RqJ+XfzVP/I845yEnMADykOHvM6HkVm4SZSnJBOiz0Anx5BA==}
+    engines: {node: ^16.13.0 || >=18.10.0}
+    peerDependencies:
+      '@angular/common': '>=16.0.0'
+      '@angular/core': '>=16.0.0'
+      rxjs: ^6.5.5 || ^7.4.0
+    dependencies:
+      '@angular/common': 17.0.7(@angular/core@17.0.7)(rxjs@7.8.1)
+      '@angular/core': 17.0.7(rxjs@7.8.1)(zone.js@0.14.2)
+      rxjs: 7.8.1
+    dev: false
+
+  /@ngx-translate/http-loader@8.0.0(@angular/common@17.0.7)(@angular/core@17.0.7)(@ngx-translate/core@15.0.0)(rxjs@7.8.1):
+    resolution: {integrity: sha512-SFMsdUcmHF5OdZkL1CHEoSAwbP5EbAOPTLLboOCRRoOg21P4GJx+51jxGdJeGve6LSKLf4Pay7BkTwmE6vxYlg==}
+    engines: {node: ^16.13.0 || >=18.10.0}
+    peerDependencies:
+      '@angular/common': '>=16.0.0'
+      '@angular/core': '>=16.0.0'
+      '@ngx-translate/core': '>=15.0.0'
+      rxjs: ^6.5.5 || ^7.4.0
+    dependencies:
+      '@angular/common': 17.0.7(@angular/core@17.0.7)(rxjs@7.8.1)
+      '@angular/core': 17.0.7(rxjs@7.8.1)(zone.js@0.14.2)
+      '@ngx-translate/core': 15.0.0(@angular/common@17.0.7)(@angular/core@17.0.7)(rxjs@7.8.1)
+      rxjs: 7.8.1
+    dev: false
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}

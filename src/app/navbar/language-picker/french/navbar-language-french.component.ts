@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'navbar-language-french',
@@ -7,5 +8,6 @@ import { Component } from '@angular/core';
   templateUrl: './navbar-language-french.component.html',
 })
 export class NavbarLanguageFrenchComponent {
+
 
 }
