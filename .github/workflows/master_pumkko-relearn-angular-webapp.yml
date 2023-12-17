@@ -47,8 +47,8 @@ jobs:
       - name: pnpm install, build, and test
         run: |
           pnpm install
-          pnpm run build --if-present
-          pnpm run test --if-present
+          pnpm run build --frozen-lockfile
+          pnpm run test
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
