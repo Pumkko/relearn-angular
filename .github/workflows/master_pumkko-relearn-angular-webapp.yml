@@ -16,6 +16,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: cschleiden/replace-tokens@v1.2
+        with:
+          files: '["src/environments/environment.ts"]'
+          tokenPrefix: '{{'
+          tokenSuffix: '}}'
+        env:
+          AUTH0_DOMAIN_ID: ${{ secrets.AUTH0_DOMAIN_ID }}
+          AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
+
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
