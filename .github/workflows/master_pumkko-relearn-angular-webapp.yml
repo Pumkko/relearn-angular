@@ -80,5 +80,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'pumkko-relearn-angular-webapp'
-          package: ./relearn-angular/browser
+          package: ./dist/relearn-angular/browser
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3DC97BF33AFD48359E213A88B9CA0A30 }}
