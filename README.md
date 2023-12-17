@@ -15,13 +15,16 @@ Azure Static Webapp : very easy to setup i only had to change `output_location: 
 otherwise fairly easy i did try to make it use pnpm but without success
 
 Azure Webapp : a bit more difficult, i had to : 
-Remove call to `pnpm run test` because it required Chrome to run and i did not want to fix that right now
-Change `zip release.zip ./* -r` to `zip release.zip ./dist/* -r` because it was putting EVERYTHING into the zip including node_modules
-Update `package: ./dist/relearn-angular/browser` so it points to the right folder
-Setup PNPM found a [github repo that explained it](https://github.com/pnpm/action-setup)
-Also i needed to serve static file so i followed [this guide](https://nicolgit.github.io/how-deploy-angular-app-to-azure-appservice-running-linux-from-github/)  
-I basically needed to set this startup command under Configuration/General Settings in the web app
+ - Remove call to `pnpm run test` because it required Chrome to run and i did not want to fix that right now
+ - Change `zip release.zip ./* -r` to `zip release.zip ./dist/* -r` because it was putting EVERYTHING into the zip including node_modules
+ - Update `package: ./dist/relearn-angular/browser` so it points to the right folder
+ - Setup PNPM found a [github repo that explained it](https://github.com/pnpm/action-setup)
+ - Also i needed to serve static file so i followed [this guide](https://nicolgit.github.io/how-deploy-angular-app-to-azure-appservice-running-linux-from-github/)  
+   I basically needed to set this startup command under Configuration/General Settings in the web app
 `pm2 serve /home/site/wwwroot --no-daemon --spa`
+
+### Running on Azure
+https://pumkko-relearn-angular-webapp.azurewebsites.net/
 
 ## Development server
 
