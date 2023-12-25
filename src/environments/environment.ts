@@ -5,7 +5,7 @@ export const environment: TEnvironment = {
     msalConfig: {
         auth: {
             clientId: '{{MSAL_AUTH_CLIENTID}}',
-            authority: '{{MSAL_AUTHORITY_WITH_TENANT_ID}}}'
+            authority: '{{MSAL_AUTHORITY_WITH_TENANT_ID}}'
         }
     },
     apiConfig: {
