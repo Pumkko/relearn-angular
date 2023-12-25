@@ -4,12 +4,12 @@ export const environment: TEnvironment = {
     production: true,
     msalConfig: {
         auth: {
-            clientId: 'ENTER_CLIENT_ID',
-            authority: 'ENTER_AUTHORITY/WITH_TENANT_ID'
+            clientId: '{{MSAL_AUTH_CLIENTID}}',
+            authority: '{{MSAL_AUTHORITY_WITH_TENANT_ID}}}'
         }
     },
     apiConfig: {
         scopes: ['ENTER_SCOPE'],
         uri: 'ENTER_URI'
     }
-  };
+};

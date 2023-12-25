@@ -3,7 +3,7 @@ export type TEnvironment = {
     msalConfig: {
         auth: {
             clientId: string,
-            authority: `${string}/${string}`,
+            authority: string,
         }
     },
     apiConfig: {
