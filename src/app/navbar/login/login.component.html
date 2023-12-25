@@ -3,7 +3,7 @@
 
 
 
-@if(  loginDisplay ) {
+@if(  loginDisplay() ) {
     <button (click)="logout()">Logout</button>
 } @else {
     <button (click)="loginRedirect()">Login</button>

@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
 import { Subject, filter, takeUntil } from 'rxjs';
 import { EventMessage, InteractionStatus, RedirectRequest, PopupRequest, AuthenticationResult, EventType } from '@azure/msal-browser';
@@ -9,12 +9,13 @@ import { EventMessage, InteractionStatus, RedirectRequest, PopupRequest, Authent
   standalone: true,
   imports: [AsyncPipe],
   templateUrl: './login.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
 
 
   isIframe = false;
-  loginDisplay = false;
+  loginDisplay = signal(false);
   private readonly _destroying$ = new Subject<void>();
 
   private msalGuardConfig = inject<MsalGuardConfiguration>(MSAL_GUARD_CONFIG);
@@ -22,8 +23,6 @@ export class LoginComponent {
   private msalBroadcastService = inject(MsalBroadcastService)
 
   ngOnInit() {
-
-
     this.authService.handleRedirectObservable().subscribe();
 
     this.isIframe = window !== window.parent && !window.opener; // Remove this line to use Angular Universal
@@ -34,14 +33,14 @@ export class LoginComponent {
       .pipe(
         filter((msg: EventMessage) => msg.eventType === EventType.ACCOUNT_ADDED || msg.eventType === EventType.ACCOUNT_REMOVED),
       )
-      .subscribe((result: EventMessage) => {
+      .subscribe(() => {
         if (this.authService.instance.getAllAccounts().length === 0) {
           window.location.pathname = "/";
         } else {
           this.setLoginDisplay();
         }
       });
-    
+
     this.msalBroadcastService.inProgress$
       .pipe(
         filter((status: InteractionStatus) => status === InteractionStatus.None),
@@ -55,10 +54,11 @@ export class LoginComponent {
   }
 
   setLoginDisplay() {
-    this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
+    const anyAccount = this.authService.instance.getAllAccounts().length > 0;
+    this.loginDisplay.set(anyAccount);
   }
 
-  checkAndSetActiveAccount(){
+  checkAndSetActiveAccount() {
     /**
      * If no active account set but there are accounts signed in, sets first account to active account
      * To use active account set here, subscribe to inProgress$ first in your component
@@ -73,35 +73,16 @@ export class LoginComponent {
   }
 
   loginRedirect() {
-    if (this.msalGuardConfig.authRequest){
-      this.authService.loginRedirect({...this.msalGuardConfig.authRequest} as RedirectRequest);
+    if (this.msalGuardConfig.authRequest) {
+      this.authService.loginRedirect({ ...this.msalGuardConfig.authRequest } as RedirectRequest);
     } else {
       this.authService.loginRedirect();
     }
   }
 
-  loginPopup() {
-    if (this.msalGuardConfig.authRequest){
-      this.authService.loginPopup({...this.msalGuardConfig.authRequest} as PopupRequest)
-        .subscribe((response: AuthenticationResult) => {
-          this.authService.instance.setActiveAccount(response.account);
-        });
-      } else {
-        this.authService.loginPopup()
-          .subscribe((response: AuthenticationResult) => {
-            this.authService.instance.setActiveAccount(response.account);
-      });
-    }
-  }
+  logout() {
+    this.authService.logoutRedirect();
 
-  logout(popup?: boolean) {
-    if (popup) {
-      this.authService.logoutPopup({
-        mainWindowRedirectUri: "/"
-      });
-    } else {
-      this.authService.logoutRedirect();
-    }
   }
 
   ngOnDestroy(): void {
