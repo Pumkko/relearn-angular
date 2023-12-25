@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { lastValueFrom, map } from 'rxjs';
 import { ZodError } from 'zod';
-import { RickAndMortyCharacterResponseSchema } from './services/rick-and-morty-character';
+import { RickAndMortyCharacterResponseSchema } from './rick-and-morty-character';
 
 
 @Injectable()

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RickAndMortyService } from '../../rick-and-morty.service';
+import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
 import { RickAndMortyCharacter } from '../../services/rick-and-morty-character';
