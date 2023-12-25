@@ -2,6 +2,14 @@ import { TEnvironment } from "./TEnvironment";
 
 export const environment: TEnvironment = {
     production: true,
-    auth0Domain: '{{AUTH0_DOMAIN_ID}}',
-    auth0ClientId: '{{AUTH0_CLIENT_ID}}'
-};
+    msalConfig: {
+        auth: {
+            clientId: 'ENTER_CLIENT_ID',
+            authority: 'ENTER_AUTHORITY/WITH_TENANT_ID'
+        }
+    },
+    apiConfig: {
+        scopes: ['ENTER_SCOPE'],
+        uri: 'ENTER_URI'
+    }
+  };

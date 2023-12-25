@@ -1,11 +1,12 @@
-import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ChildComponent, Counter } from './playWithOnPush/child/child.component';
-import { CounterService } from './playWithOnPush/counter.service';
 import { ParentComponent } from './playWithOnPush/parent/parent.component';
+import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
+import { Subject, filter, takeUntil } from 'rxjs';
+import { EventMessage, InteractionStatus, RedirectRequest, PopupRequest, AuthenticationResult, EventType } from '@azure/msal-browser';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +18,8 @@ import { ParentComponent } from './playWithOnPush/parent/parent.component';
 export class AppComponent {
   title = 'relearn-angular';
 
-
   ngOnInit() {
-    initFlowbite()
+    initFlowbite();
   }
 
 }

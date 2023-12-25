@@ -2,13 +2,10 @@
 
 
 
-@if( user$ | async; as user ){
-    {{user.name}}
-}
 
-@if( isAuthenticated$ | async; as isAuthenticated) {
+@if(  loginDisplay ) {
     <button (click)="logout()">Logout</button>
 } @else {
-    <button (click)="login()">Login</button>
+    <button (click)="loginRedirect()">Login</button>
 }
 
