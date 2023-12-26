@@ -53,7 +53,7 @@ export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
 }
 
 export function MSALGuardConfigFactory(): MsalGuardConfiguration {
-  return { 
+  return {
     interactionType: InteractionType.Redirect,
     authRequest: {
       scopes: [...environment.apiConfig.scopes]
@@ -62,31 +62,29 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   };
 }
 
-const initialNavigation = !BrowserUtils.isInIframe() && !BrowserUtils.isInPopup() 
-    ? withEnabledBlockingInitialNavigation() // Set to enabledBlocking to use Angular Universal
-    : withDisabledInitialNavigation(); 
-
-
+const initialNavigation = !BrowserUtils.isInIframe() && !BrowserUtils.isInPopup()
+  ? withEnabledBlockingInitialNavigation() // Set to enabledBlocking to use Angular Universal
+  : withDisabledInitialNavigation();
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, initialNavigation),
     provideHttpClient(withInterceptorsFromDi()),
     {
-        provide: HTTP_INTERCEPTORS,
-        useClass: MsalInterceptor,
-        multi: true
+      provide: HTTP_INTERCEPTORS,
+      useClass: MsalInterceptor,
+      multi: true
     },
     {
-        provide: MSAL_INSTANCE,
-        useFactory: MSALInstanceFactory
+      provide: MSAL_INSTANCE,
+      useFactory: MSALInstanceFactory
     },
     {
-        provide: MSAL_GUARD_CONFIG,
-        useFactory: MSALGuardConfigFactory
+      provide: MSAL_GUARD_CONFIG,
+      useFactory: MSALGuardConfigFactory
     },
     {
-        provide: MSAL_INTERCEPTOR_CONFIG,
-        useFactory: MSALInterceptorConfigFactory
+      provide: MSAL_INTERCEPTOR_CONFIG,
+      useFactory: MSALInterceptorConfigFactory
     },
     MsalService,
     MsalGuard,

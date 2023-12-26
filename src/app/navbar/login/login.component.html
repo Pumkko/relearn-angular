@@ -9,3 +9,6 @@
     <button (click)="loginRedirect()">Login</button>
 }
 
+@if(currentUser !== null){
+    {{currentUser.name}}
+}

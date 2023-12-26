@@ -9,7 +9,7 @@ export const environment: TEnvironment = {
         }
     },
     apiConfig: {
-        scopes: ['user.read'],
-        uri: 'https://graph.microsoft.com/v1.0/me'
+        scopes: [{{API_SCOPE}}],
+        uri: '{{API_URL}}'
     }
 };
