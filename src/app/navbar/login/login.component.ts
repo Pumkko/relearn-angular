@@ -2,7 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
 import { Subject, filter, takeUntil } from 'rxjs';
-import { EventMessage, InteractionStatus, RedirectRequest, PopupRequest, AuthenticationResult, EventType } from '@azure/msal-browser';
+import { EventMessage, InteractionStatus, RedirectRequest, EventType, AccountInfo } from '@azure/msal-browser';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +21,12 @@ export class LoginComponent {
   private msalGuardConfig = inject<MsalGuardConfiguration>(MSAL_GUARD_CONFIG);
   private authService = inject(MsalService);
   private msalBroadcastService = inject(MsalBroadcastService)
+
+
+  get currentUser(): AccountInfo | null {
+    let activeAccount = this.authService.instance.getActiveAccount();
+    return activeAccount;
+  }
 
   ngOnInit() {
     this.authService.handleRedirectObservable().subscribe();
