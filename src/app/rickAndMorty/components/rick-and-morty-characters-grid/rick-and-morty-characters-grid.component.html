@@ -6,7 +6,7 @@
     An error has occurred while fetching Rick And Morty Characters
     }
     @if (rickAndMortyCharactersQuery.data(); as characters) {
-    <ag-grid-angular class="ag-theme-quartz justify-items-center h-4/5 w-2/3" [rowData]="characters.results"
+    <ag-grid-angular class="ag-theme-quartz justify-items-center h-4/5 w-2/3" [rowData]="characters"
         [columnDefs]="colDefs">
     </ag-grid-angular>
     }
