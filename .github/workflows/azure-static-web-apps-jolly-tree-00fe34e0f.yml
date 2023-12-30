@@ -27,7 +27,6 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         template: ./IaC/main.bicep
         failOnStdErr: false
-        parameters: 'GITHUB_TOKEN=${{secrets.AZURE_GITHUB_TOKEN}}'
         scope: 'subscription'
         region: eastus
 
@@ -36,6 +35,35 @@ jobs:
     name: Build and Deploy Job
     needs: deploy-azure-resources
     steps:
+
+      # Log into Azure
+      - name: az login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: "Get SWA Token"
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            echo "SWA_TOKEN=$(az staticwebapp secrets list -n relearn-angular-client-static-web-app --query 'properties.apiKey')" >> $GITHUB_ENV   
+
+      - name: "Get StaticWebApp URL"
+        uses: azure/CLI@v1
+        with: 
+          inlineScript: |
+            echo "SWA_URL=$(az staticwebapp show -n relearn-angular-client-static-web-app --query 'defaultHostname')" >> $GITHUB_ENV   
+    
+      - name: "Get StaticWebApp URL"
+        uses: azure/CLI@v1
+        with: 
+          inlineScript: |
+            az rest 
+            --method "patch" 
+            --uri "https://graph.microsoft.com/v1.0/applications/<<object-id>>" 
+            --headers "{'Content-Type': 'application/json'}" 
+            --body "{'spa': {'redirectUris': [ '${{ env.SWA_URL }}', 'http://localhost:4200/' ]}}"
+      
       - uses: actions/checkout@v3
         with:
           submodules: true
@@ -44,7 +72,7 @@ jobs:
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_JOLLY_TREE_00FE34E0F }}
+          azure_static_web_apps_api_token: ${{ env.SWA_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
