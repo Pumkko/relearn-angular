@@ -42,7 +42,7 @@ jobs:
         echo "${{ env.SWA_URL }}"
     - name: Set App SPA Redirect URIs
       run: |
-        az rest  --method "patch" --uri "https://graph.microsoft.com/v1.0/applications/${{ secrets.AZURE_APP_OBJECT_ID }}"  --headers "{'Content-Type': 'application/json'}"  --body "{'spa': {'redirectUris': [ '${{ env.SWA_URL }}', 'http://localhost:4200/' ]}}"
+        az rest  --method "patch" --uri "https://graph.microsoft.com/v1.0/applications/${{ secrets.AZURE_APP_OBJECT_ID }}"  --headers "{'Content-Type': 'application/json'}"  --body "{'spa': {'redirectUris': [ 'https://${{ env.SWA_URL }}', 'http://localhost:4200/' ]}}"
 
   build_and_deploy_job:
     runs-on: ubuntu-latest
