@@ -19,11 +19,14 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: Test1
-      id: test1
+
+    - name: Get SWA Token
       run: |
-        h=$(az --version)
-        echo "::set-output name=h::$h"
+        echo "SWA_TOKEN=$(az staticwebapp secrets list -n relearn-angular-client-static-web-app --query 'properties.apiKey')" >> $GITHUB_ENV   
+
+    - name: Test2
+      run: |
+        echo "${{ env.SWA_TOKEN }}"
 
       # Deploy Bicep file
     - name: deploy resources
@@ -34,12 +37,6 @@ jobs:
         failOnStdErr: false
         scope: 'subscription'
         region: eastus
-
-    - name: "Get SWA Token"
-      uses: azure/CLI@v1
-      with:
-        inlineScript: |
-          echo "SWA_TOKEN=$(az staticwebapp secrets list -n relearn-angular-client-static-web-app --query 'properties.apiKey')" >> $GITHUB_ENV   
 
     - name: "Get StaticWebApp URL"
       uses: azure/CLI@v1
