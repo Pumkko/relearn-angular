@@ -30,7 +30,6 @@ jobs:
         scope: 'subscription'
         region: eastus
 
-
     - name: Get SWA Token
       run: |
           echo "SWA_TOKEN=$(az staticwebapp secrets list -n relearn-angular-client-static-web-app --query 'properties.apiKey')" >> $GITHUB_ENV   
@@ -38,6 +37,9 @@ jobs:
       run: |
         echo "SWA_URL=$(az staticwebapp show -n relearn-angular-client-static-web-app --query 'defaultHostname')" >> $GITHUB_ENV   
         
+    - name: Test2
+      run: |
+        echo "${{ env.SWA_URL }}"
     - name: Set App SPA Redirect URIs
       run: |
         az rest  --method "patch" --uri "https://graph.microsoft.com/v1.0/applications/${{ secrets.AZURE_APP_OBJECT_ID }}"  --headers "{'Content-Type': 'application/json'}"  --body "{'spa': {'redirectUris': [ '${{ env.SWA_URL }}', 'http://localhost:4200/' ]}}"
