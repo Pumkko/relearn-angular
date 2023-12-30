@@ -32,7 +32,7 @@ jobs:
 
     - name: Get SWA Token
       run: |
-        echo "SWA_TOKEN=$(az staticwebapp secrets list -n relearn-angular-client-static-web-app --query 'properties.apiKey')" >> $GITHUB_ENV   
+        echo "SWA_TOKEN="$(az staticwebapp secrets list -n relearn-angular-client-static-web-app --query 'properties.apiKey')"" >> $GITHUB_ENV   
 
     - name: Test2
       run: |
