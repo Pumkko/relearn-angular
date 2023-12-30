@@ -41,16 +41,6 @@ jobs:
           submodules: true
           lfs: false
 
-      - name: Replace Token in Environment file
-        uses: cschleiden/replace-tokens@v1.2
-        with:
-          files: '["src/environments/environment.ts"]'
-          tokenPrefix: '{{'
-          tokenSuffix: '}}'
-        env:
-          MSAL_AUTH_CLIENTID: ${{ secrets.MSAL_AUTH_CLIENTID }}
-          MSAL_AUTHORITY_WITH_TENANT_ID: ${{ secrets.MSAL_AUTHORITY_WITH_TENANT_ID }}
-
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
