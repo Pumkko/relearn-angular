@@ -60,7 +60,7 @@ jobs:
           inlineScript: |
             az rest 
             --method "patch" 
-            --uri "https://graph.microsoft.com/v1.0/applications/<<object-id>>" 
+            --uri "https://graph.microsoft.com/v1.0/applications/${{ secrets.AZURE_APP_OBJECT_ID }}" 
             --headers "{'Content-Type': 'application/json'}" 
             --body "{'spa': {'redirectUris': [ '${{ env.SWA_URL }}', 'http://localhost:4200/' ]}}"
       
