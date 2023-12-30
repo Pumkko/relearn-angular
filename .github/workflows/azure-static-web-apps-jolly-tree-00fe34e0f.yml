@@ -20,20 +20,6 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Get SWA Url
-      run: |
-          echo "SWA_URL=$(az staticwebapp show -n relearn-angular-client-static-web-app --query 'defaultHostname')" >> $GITHUB_ENV   
-          
-  
-    - name: Azure CLI script
-      uses: azure/CLI@v1
-      env:
-        SWA_URL: ${{ env.SWA_URL }}
-      with:
-        inlineScript: |
-          az rest  --method "patch" --uri "https://graph.microsoft.com/v1.0/applications/${{ secrets.AZURE_APP_OBJECT_ID }}"  --headers "{'Content-Type': 'application/json'}"  --body "{'spa': {'redirectUris': [ 'https://${{ env.SWA_URL }}', 'http://localhost:4200/' ]}}"
-  
-
       # Deploy Bicep file
     - name: deploy resources
       uses: azure/arm-deploy@v1
