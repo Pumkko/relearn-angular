@@ -39,6 +39,13 @@ jobs:
     name: Build and Deploy Job
     needs: deploy-azure-resources
     steps:
+
+
+      - name: Test2
+        run: |
+          echo "${{ env.SWA_TOKEN }}"
+
+
       - uses: actions/checkout@v3
         with:
           submodules: true
