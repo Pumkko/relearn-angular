@@ -22,14 +22,6 @@ export class RickAndMortyCharactersGridComponent {
       colId: "name",
       field: "name"
     },
-    {
-      colId: "origin",
-      field: "origin.name"
-    },
-    {
-      colId: "status",
-      field: "status"
-    }
   ]
 
   get rickAndMortyCharactersQuery() {
