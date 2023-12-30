@@ -21,14 +21,14 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # Deploy Bicep file
-    - name: deploy resources
-      uses: azure/arm-deploy@v1
-      with:
-        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-        template: ./IaC/main.bicep
-        failOnStdErr: false
-        scope: 'subscription'
-        region: eastus
+    #- name: deploy resources
+      #uses: azure/arm-deploy@v1
+      #with:
+        #subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        #template: ./IaC/main.bicep
+        #failOnStdErr: false
+       # scope: 'subscription'
+       # region: eastus
 
     - name: Get SWA Token
       run: |
@@ -40,11 +40,9 @@ jobs:
 
     - name: Build And Deploy
       id: builddeploy
-      env:
-        API_DEPLOY_TOKEN: 0a8eaa20fe987528cc4ac54642ec3449e0f141b4b5704ac4ca3888bb1b073ed94-ca854a99-92ba-4607-8a10-136b504a6f6100f141465
       uses: Azure/static-web-apps-deploy@v1
       with:
-        azure_static_web_apps_api_token: $API_DEPLOY_TOKEN
+        azure_static_web_apps_api_token: ${{ env.SWA_TOKEN }}
         repo_token: ''
         action: "upload"
         ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
