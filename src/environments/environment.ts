@@ -10,6 +10,6 @@ export const environment: TEnvironment = {
     },
     apiConfig: {
         scopes: [{{API_SCOPE}}],
-        uri: '{{API_URL}}'
+        uri: 'https://relearn-angular-app.azurewebsites.net/'
     }
 };
