@@ -30,16 +30,16 @@ jobs:
         scope: 'subscription'
         region: eastus
 
-    - name: Get SWA Token
-      run: |
-          echo "SWA_TOKEN=$(az staticwebapp secrets list -n relearn-angular-client-static-web-app --query 'properties.apiKey')" >> $GITHUB_ENV   
+
 
   build_and_deploy_job:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     needs: deploy-azure-resources
     steps:
-
+      - name: Get SWA Token
+        run: |
+          echo "SWA_TOKEN=$(az staticwebapp secrets list -n relearn-angular-client-static-web-app --query 'properties.apiKey')" >> $GITHUB_ENV   
 
       - name: Test2
         run: |
