@@ -23,8 +23,17 @@ Azure Webapp : a bit more difficult, i had to :
    I basically needed to set this startup command under Configuration/General Settings in the web app
 `pm2 serve /home/site/wwwroot --no-daemon --spa`
 
+I dropped it later because i did not think it was that interesting to have a full webapp for a angular app
+
+### The bootstrap problem
+To deploy the Static Web app i need to call this github action `Azure/static-web-apps-deploy@v1`
+but it requires a deployment Token that is generated when the swa is created, so not available at first
+The solution (which i have not tested yet) : After Azure deploy has completed call a specific az secrets command to get the deployment token 
+and use it immediately. 
+
 ### Running on Azure
-https://pumkko-relearn-angular-webapp.azurewebsites.net/
+https://jolly-tree-00fe34e0f.4.azurestaticapps.net
+
 
 ## Development server
 
