@@ -36,14 +36,13 @@ jobs:
 
     - name: Test2
       run: |
-        echo "${{ env.SWA_TOKEN }}"
-
+        echo ${{ env.SWA_TOKEN }}
 
     - name: Build And Deploy
       id: builddeploy
       uses: Azure/static-web-apps-deploy@v1
       with:
-        azure_static_web_apps_api_token: ${{ env.SWA_TOKEN }}
+        azure_static_web_apps_api_token: 0a8eaa20fe987528cc4ac54642ec3449e0f141b4b5704ac4ca3888bb1b073ed94-ca854a99-92ba-4607-8a10-136b504a6f6100f141465
         repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
         action: "upload"
         ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
