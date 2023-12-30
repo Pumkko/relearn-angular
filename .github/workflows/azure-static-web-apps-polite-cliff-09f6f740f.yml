@@ -26,6 +26,7 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         template: ./IaC/main.bicep
         failOnStdErr: false
+        parameters: 'GITHUB_TOKEN=${{secrets.GITHUB_TOKEN}}'
         scope: 'subscription'
         region: eastus
 

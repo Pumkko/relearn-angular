@@ -1,6 +1,8 @@
 
 
 param location string
+@secure()
+param GITHUB_TOKEN string
 
 resource RelearnAngularAppClientStaticWebApp 'Microsoft.Web/staticSites@2023-01-01' = {
   name: 'relearn-angular-client-static-web-app'
@@ -9,7 +11,7 @@ resource RelearnAngularAppClientStaticWebApp 'Microsoft.Web/staticSites@2023-01-
     provider: 'GitHub'
     repositoryUrl: 'https://github.com/Pumkko/relearn-angular'
     branch: 'master'
-    repositoryToken: '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'
+    repositoryToken: GITHUB_TOKEN
     buildProperties: {
       appLocation: '/'
       apiLocation: '' 
