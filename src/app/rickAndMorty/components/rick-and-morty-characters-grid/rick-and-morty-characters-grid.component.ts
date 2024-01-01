@@ -8,11 +8,12 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { AddNewCharacterButtonComponent } from '../add-new-character-button/add-new-character-button.component';
 import { CharacterHistoryCellComponent } from './grid-cell-renderer/character-history-cell/character-history-cell.component';
 import { UpdateCharacterCellComponent } from './grid-cell-renderer/update-character-cell/update-character-cell.component';
+import { UpdateRickAndMortyCharacterModalComponent } from '../update-rick-and-morty-character-modal/update-rick-and-morty-character-modal.component';
 
 @Component({
   selector: 'app-rick-and-morty-characters-grid',
   standalone: true,
-  imports: [AgGridModule, TranslateModule, AddNewCharacterButtonComponent],
+  imports: [AgGridModule, TranslateModule, AddNewCharacterButtonComponent, UpdateRickAndMortyCharacterModalComponent],
   templateUrl: './rick-and-morty-characters-grid.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -77,7 +78,7 @@ export class RickAndMortyCharactersGridComponent {
       field: "validSince",
       headerValueGetter: () => this._translateService.instant('rickAndMorty.gridHeaders.validSince'),
       valueGetter: (params) => {
-        if(!params.data){
+        if (!params.data) {
           return null;
         }
 
