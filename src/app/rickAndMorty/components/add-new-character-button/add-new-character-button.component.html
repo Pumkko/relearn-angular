@@ -43,19 +43,24 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             placeholder="Character Name">
 
+                        @if(addNewCharacterForm.controls['name'].errors?.['required'] ){
+                        <p class="text-red-700">This field is required</p>
+                        }
                     </div>
                     <div class="col-span-2">
                         <label for="species" class="block mb-2 text-sm font-medium text-gray-900 ">Species</label>
                         <input type="text" name="species" id="species"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             placeholder="species" formControlName="species">
+                        @if(addNewCharacterForm.controls['species'].errors?.['required'] ){
+                        <p class="text-red-700">This field is required</p>
+                        }
                     </div>
                     <div class="col-span-2 sm:col-span-1">
                         <label for="lifeStatus" class="block mb-2 text-sm font-medium text-gray-900 ">Life
                             Status</label>
                         <select id="lifeStatus" name="lifeStatus" formControlName="lifeStatus"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                            <option selected="">Select Life Status</option>
                             <option value="0">Alive</option>
                             <option value="1">Dead</option>
                             <option value="2">Unknown</option>
@@ -66,6 +71,9 @@
                         <input type="text" name="origin" id="origin"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             placeholder="origin" formControlName="origin">
+                        @if(addNewCharacterForm.controls['origin'].errors?.['required'] ){
+                        <p class="text-red-700">This field is required</p>
+                        }
                     </div>
                 </div>
                 <button type="submit"
