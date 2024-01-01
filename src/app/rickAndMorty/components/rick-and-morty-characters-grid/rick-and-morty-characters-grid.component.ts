@@ -5,11 +5,12 @@ import { ColDef, GridApi, GridOptions, GridReadyEvent } from 'ag-grid-community'
 import { RickAndMortyCharacter } from '../../services/rick-and-morty-character';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { AddNewCharacterButtonComponent } from '../add-new-character-button/add-new-character-button.component';
 
 @Component({
   selector: 'app-rick-and-morty-characters-grid',
   standalone: true,
-  imports: [AgGridModule, TranslateModule],
+  imports: [AgGridModule, TranslateModule, AddNewCharacterButtonComponent],
   templateUrl: './rick-and-morty-characters-grid.component.html',
   providers: [RickAndMortyService],
   changeDetection: ChangeDetectionStrategy.OnPush
