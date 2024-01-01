@@ -28,12 +28,6 @@ export class RickAndMortyService {
 
   private fetchCharacters() {
 
-    const test = z.string().datetime({
-      
-    });
-
-    const isOkay = test.safeParse("2024-01-01T17:13:48.6537643");
-    console.log(isOkay);
     const charactersEndpoint = new URL('/Character', environment.apiConfig.uri);
     return lastValueFrom(
       this.http.get<unknown>(charactersEndpoint.toString())
