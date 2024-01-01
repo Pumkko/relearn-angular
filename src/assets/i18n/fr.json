@@ -1,5 +1,14 @@
 {
     "navbar": {
         "home": "Accueil"
+    },
+    "rickAndMorty": {
+        "gridHeaders": {
+            "name": "Nom",
+            "species": "Espèce",
+            "origin": "Origine",
+            "lifeStatus": "Statut",
+            "validSince": "Mise à jour le"
+        }
     }
 }
