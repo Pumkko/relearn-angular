@@ -8,6 +8,11 @@
             "species": "Espèce",
             "origin": "Origine",
             "lifeStatus": "Statut",
+            "lifestatusValue": {
+                "0": "Vivant",
+                "1": "Mort",
+                "2": "Inconnue"
+            },
             "validSince": "Mise à jour le"
         }
     }

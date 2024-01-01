@@ -25,6 +25,7 @@ export class RickAndMortyCharactersGridComponent {
     this._translateService = inject(TranslateService);
     this._translateService.onLangChange.pipe(takeUntilDestroyed()).subscribe(() => {
       this.api?.refreshHeader();
+      this.api?.redrawRows();
     });
   }
 
@@ -51,12 +52,27 @@ export class RickAndMortyCharactersGridComponent {
     {
       colId: "lifeStatus",
       field: "lifeStatus",
-      headerValueGetter: () => this._translateService.instant('rickAndMorty.gridHeaders.lifeStatus')
+      headerValueGetter: () => this._translateService.instant('rickAndMorty.gridHeaders.lifeStatus'),
+      valueGetter: (params) => {
+        if (!params.data) {
+          return null;
+        }
+        return this._translateService.instant(`rickAndMorty.gridHeaders.lifestatusValue.${params.data?.lifeStatus}`)
+      }
     },
     {
       colId: "validSince",
       field: "validSince",
-      headerValueGetter: () => this._translateService.instant('rickAndMorty.gridHeaders.validSince')
+      headerValueGetter: () => this._translateService.instant('rickAndMorty.gridHeaders.validSince'),
+      valueGetter: (params) => {
+        if(!params.data){
+          return null;
+        }
+
+        const date = new Date(params.data.validSince);
+        const formatted = new Intl.DateTimeFormat(this._translateService.currentLang).format(date)
+        return formatted;
+      }
     }
   ]
 
