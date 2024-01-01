@@ -6,6 +6,7 @@ import { ZodError, z } from 'zod';
 import { RickAndMortyCharacterResponseSchema } from './rick-and-morty-character';
 import { environment } from '../../../environments/environment';
 import { AddNewCharacter } from './rick-and-morty-add-character';
+import { UpdateCharacter } from './rick-and-morty-update-character';
 
 
 @Injectable({
@@ -33,6 +34,16 @@ export class RickAndMortyService {
     mutationFn: (body: AddNewCharacter) => {
       const charactersEndpoint = new URL('/Character', environment.apiConfig.uri);
       return lastValueFrom(this.http.post(charactersEndpoint.toString(), body))
+    },
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ['rickAndMortyCharacter'] })
+    }
+  }))
+
+  updateCharacterMutation = injectMutation((queryClient) => ({
+    mutationFn: (body: UpdateCharacter) => {
+      const charactersEndpoint = new URL('/Character', environment.apiConfig.uri);
+      return lastValueFrom(this.http.put(charactersEndpoint.toString(), body))
     },
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ['rickAndMortyCharacter'] })

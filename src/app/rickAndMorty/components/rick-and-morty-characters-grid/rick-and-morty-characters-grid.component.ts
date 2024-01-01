@@ -6,6 +6,8 @@ import { RickAndMortyCharacter } from '../../services/rick-and-morty-character';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { AddNewCharacterButtonComponent } from '../add-new-character-button/add-new-character-button.component';
+import { CharacterHistoryCellComponent } from './grid-cell-renderer/character-history-cell/character-history-cell.component';
+import { UpdateCharacterCellComponent } from './grid-cell-renderer/update-character-cell/update-character-cell.component';
 
 @Component({
   selector: 'app-rick-and-morty-characters-grid',
@@ -34,6 +36,16 @@ export class RickAndMortyCharactersGridComponent {
   }
 
   colDefs: ColDef<RickAndMortyCharacter>[] = [
+    {
+      colId: 'history',
+      cellRenderer: CharacterHistoryCellComponent,
+      flex: 0.3
+    },
+    {
+      colId: 'update',
+      cellRenderer: UpdateCharacterCellComponent,
+      flex: 0.3
+    },
     {
       colId: "name",
       field: "name",
