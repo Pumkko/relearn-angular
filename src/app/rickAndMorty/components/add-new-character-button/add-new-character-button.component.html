@@ -61,9 +61,9 @@
                             Status</label>
                         <select id="lifeStatus" name="lifeStatus" formControlName="lifeStatus"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                            <option value="0">Alive</option>
-                            <option value="1">Dead</option>
-                            <option value="2">Unknown</option>
+                            <option [ngValue]=0>Alive</option>
+                            <option [ngValue]=1>Dead</option>
+                            <option [ngValue]=2>Unknown</option>
                         </select>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
@@ -76,8 +76,7 @@
                         }
                     </div>
                 </div>
-                <button type="submit"
-                    [disabled]="!addNewCharacterForm.valid && (addNewCharacterForm.dirty || addNewCharacterForm.touched) "
+                <button type="submit" data-modal-toggle="add-character-modal" [disabled]="!addNewCharacterForm.valid"
                     class="disabled:opacity-30 disabled:cursor-not-allowed text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                     <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
