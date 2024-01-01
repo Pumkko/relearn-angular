@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { lastValueFrom, map } from 'rxjs';
-import { ZodError } from 'zod';
+import { ZodError, z } from 'zod';
 import { RickAndMortyCharacterResponseSchema } from './rick-and-morty-character';
 import { environment } from '../../../environments/environment';
 
@@ -25,11 +25,18 @@ export class RickAndMortyService {
 
   }))
 
-  private charactersEndpoint = new URL('/Character', environment.apiConfig.uri);
 
   private fetchCharacters() {
+
+    const test = z.string().datetime({
+      
+    });
+
+    const isOkay = test.safeParse("2024-01-01T17:13:48.6537643");
+    console.log(isOkay);
+    const charactersEndpoint = new URL('/Character', environment.apiConfig.uri);
     return lastValueFrom(
-      this.http.get<unknown>(this.charactersEndpoint.toString())
+      this.http.get<unknown>(charactersEndpoint.toString())
         .pipe(map(result => {
           const parsed = RickAndMortyCharacterResponseSchema.safeParse(result);
           if (!parsed.success) {
