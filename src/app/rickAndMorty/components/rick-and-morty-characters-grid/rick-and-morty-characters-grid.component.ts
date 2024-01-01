@@ -12,7 +12,6 @@ import { AddNewCharacterButtonComponent } from '../add-new-character-button/add-
   standalone: true,
   imports: [AgGridModule, TranslateModule, AddNewCharacterButtonComponent],
   templateUrl: './rick-and-morty-characters-grid.component.html',
-  providers: [RickAndMortyService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RickAndMortyCharactersGridComponent {

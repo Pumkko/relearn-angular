@@ -1,13 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { injectQuery } from '@tanstack/angular-query-experimental';
+import { injectMutation, injectQuery } from '@tanstack/angular-query-experimental';
 import { lastValueFrom, map } from 'rxjs';
 import { ZodError, z } from 'zod';
 import { RickAndMortyCharacterResponseSchema } from './rick-and-morty-character';
 import { environment } from '../../../environments/environment';
+import { AddNewCharacter } from './rick-and-morty-add-character';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RickAndMortyService {
   http = inject(HttpClient)
 
@@ -26,8 +29,17 @@ export class RickAndMortyService {
   }))
 
 
-  private fetchCharacters() {
+  addNewCharacterMutation = injectMutation((queryClient) => ({
+    mutationFn: (body: AddNewCharacter) => {
+      const charactersEndpoint = new URL('/Character', environment.apiConfig.uri);
+      return lastValueFrom(this.http.post(charactersEndpoint.toString(), body))
+    },
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ['rickAndMortyCharacter'] })
+    }
+  }))
 
+  private fetchCharacters() {
     const charactersEndpoint = new URL('/Character', environment.apiConfig.uri);
     return lastValueFrom(
       this.http.get<unknown>(charactersEndpoint.toString())

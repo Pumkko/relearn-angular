@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-enum LifeStatus
+export enum LifeStatus
 {
     Alive = 0,
     Dead = 1,
