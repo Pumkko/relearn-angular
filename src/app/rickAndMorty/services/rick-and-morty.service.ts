@@ -3,10 +3,10 @@ import { Injectable, inject } from '@angular/core';
 import { injectMutation, injectQuery } from '@tanstack/angular-query-experimental';
 import { lastValueFrom, map } from 'rxjs';
 import { ZodError, z } from 'zod';
-import { RickAndMortyCharacterResponseSchema } from './rick-and-morty-character';
+import { RickAndMortyCharacterResponseSchema } from '../model/rick-and-morty-character';
 import { environment } from '../../../environments/environment';
-import { AddNewCharacter } from './rick-and-morty-add-character';
-import { UpdateCharacter } from './rick-and-morty-update-character';
+import { AddNewCharacter } from '../model/rick-and-morty-add-character';
+import { UpdateCharacter } from '../model/rick-and-morty-update-character';
 
 
 @Injectable({

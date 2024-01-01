@@ -2,9 +2,9 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, RequiredValidator, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
-import { AddNewCharacterSchema } from '../../services/rick-and-morty-add-character';
+import { AddNewCharacterSchema } from '../../model/rick-and-morty-add-character';
 import { number } from 'zod';
-import { LifeStatus } from '../../services/rick-and-morty-character';
+import { LifeStatus } from '../../model/rick-and-morty-character';
 
 @Component({
   selector: 'app-add-new-character-button',

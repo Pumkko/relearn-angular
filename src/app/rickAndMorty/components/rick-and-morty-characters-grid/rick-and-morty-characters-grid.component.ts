@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, EnvironmentInjector, inject, runInInjectionContext } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, GridApi, GridOptions, GridReadyEvent } from 'ag-grid-community'; // Column Definitions Interface
-import { RickAndMortyCharacter } from '../../services/rick-and-morty-character';
+import { RickAndMortyCharacter } from '../../model/rick-and-morty-character';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { AddNewCharacterButtonComponent } from '../add-new-character-button/add-new-character-button.component';
@@ -15,7 +15,6 @@ import { UpdateRickAndMortyCharacterModalComponent } from '../update-rick-and-mo
   standalone: true,
   imports: [AgGridModule, TranslateModule, AddNewCharacterButtonComponent, UpdateRickAndMortyCharacterModalComponent],
   templateUrl: './rick-and-morty-characters-grid.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RickAndMortyCharactersGridComponent {
 
@@ -26,6 +25,7 @@ export class RickAndMortyCharactersGridComponent {
   constructor() {
     this._rickAndMortyService = inject(RickAndMortyService);
     this._translateService = inject(TranslateService);
+
     this._translateService.onLangChange.pipe(takeUntilDestroyed()).subscribe(() => {
       this.api?.refreshHeader();
       this.api?.redrawRows();

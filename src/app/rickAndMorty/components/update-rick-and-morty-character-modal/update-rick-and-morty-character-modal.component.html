@@ -8,7 +8,7 @@
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
                 <h3 class="text-lg font-semibold text-gray-900 ">
-                    Update character
+                    Update Character
                 </h3>
                 <button type="button"
                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
@@ -24,12 +24,12 @@
 
 
             <!-- Modal body -->
-            <form class="p-4 md:p-5" name="addCharacterForm" [formGroup]="updateCharacterForm" (ngSubmit)="onSubmit()">
+            <form class="p-4 md:p-5" name="addCharacterForm" [formGroup]="updateCharacterForm()" (ngSubmit)="onSubmit()">
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="lifeStatus" class="block mb-2 text-sm font-medium text-gray-900 ">Life
+                        <label for="newLifeStatus" class="block mb-2 text-sm font-medium text-gray-900 ">Life
                             Status</label>
-                        <select id="lifeStatus" name="lifeStatus" formControlName="lifeStatus"
+                        <select id="newLifeStatus" name="newLifeStatus" formControlName="newLifeStatus"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                             <option [ngValue]=0>Alive</option>
                             <option [ngValue]=1>Dead</option>
@@ -37,7 +37,7 @@
                         </select>
                     </div>
                 </div>
-                <button type="submit" data-modal-toggle="update-character-modal" [disabled]="!updateCharacterForm.valid"
+                <button type="submit" data-modal-toggle="update-character-modal" [disabled]="!updateCharacterForm().valid"
                     class="disabled:opacity-30 disabled:cursor-not-allowed text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                     <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
@@ -45,7 +45,7 @@
                             d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                             clip-rule="evenodd"></path>
                     </svg>
-                    Add new character
+                    Update Character
                 </button>
             </form>
         </div>

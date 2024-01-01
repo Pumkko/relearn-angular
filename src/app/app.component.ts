@@ -13,7 +13,6 @@ import { EventMessage, InteractionStatus, RedirectRequest, PopupRequest, Authent
   standalone: true,
   imports: [CommonModule, RouterOutlet, NavbarComponent, ParentComponent],
   templateUrl: './app.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   title = 'relearn-angular';
