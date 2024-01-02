@@ -10,11 +10,12 @@ import { CharacterHistoryCellComponent } from './grid-cell-renderer/character-hi
 import { UpdateCharacterCellComponent } from './grid-cell-renderer/update-character-cell/update-character-cell.component';
 import { UpdateRickAndMortyCharacterModalComponent } from './grid-cell-renderer/update-character-cell/update-rick-and-morty-character-modal/update-rick-and-morty-character-modal.component';
 import { DisplayHistoryModalComponent } from './grid-cell-renderer/character-history-cell/display-history-modal/display-history-modal.component';
+import { AddCharacterModalComponent } from '../add-new-character-button/add-character-modal/add-character-modal.component';
 
 @Component({
   selector: 'app-rick-and-morty-characters-grid',
   standalone: true,
-  imports: [AgGridModule, TranslateModule, AddNewCharacterButtonComponent, UpdateRickAndMortyCharacterModalComponent, DisplayHistoryModalComponent],
+  imports: [AgGridModule, TranslateModule, AddNewCharacterButtonComponent, AddCharacterModalComponent, UpdateRickAndMortyCharacterModalComponent, DisplayHistoryModalComponent],
   templateUrl: './rick-and-morty-characters-grid.component.html',
 })
 export class RickAndMortyCharactersGridComponent {

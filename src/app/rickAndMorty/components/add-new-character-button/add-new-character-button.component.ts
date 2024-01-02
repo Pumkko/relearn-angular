@@ -5,6 +5,7 @@ import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { AddNewCharacterSchema } from '../../model/rick-and-morty-add-character';
 import { number } from 'zod';
 import { LifeStatus } from '../../model/rick-and-morty-character';
+import { DisplayAddCharacterModalService } from '../../services/display-add-character-modal.service';
 
 @Component({
   selector: 'app-add-new-character-button',
@@ -14,24 +15,10 @@ import { LifeStatus } from '../../model/rick-and-morty-character';
 })
 export class AddNewCharacterButtonComponent {
 
-  private fb = inject(FormBuilder)
-  private _rickAndMortyService = inject(RickAndMortyService);
 
-  addNewCharacterForm = this.fb.group({
-    name: ['', Validators.required],
-    origin: ['', Validators.required],
-    species: ['', Validators.required],
-    lifeStatus: [LifeStatus.Unknown, Validators.required]
-  });
+  private readonly modalService = inject(DisplayAddCharacterModalService);
 
-  onSubmit() {
-    const result = AddNewCharacterSchema.safeParse(this.addNewCharacterForm.value);
-    if (result.success === false) {
-      console.error(result.error);
-      console.error("Valid form but invalid schema, something's very wrong");
-      return;
-    }
-
-    this._rickAndMortyService.addNewCharacterMutation().mutate(result.data)
+  onShowModal() {
+    this.modalService.onShowModal();
   }
 }
