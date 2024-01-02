@@ -1,10 +1,11 @@
 import { Component, computed, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LifeStatus } from '../../model/rick-and-morty-character';
-import { UpdateCharacterSchema } from '../../model/rick-and-morty-update-character';
-import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { TranslateModule } from '@ngx-translate/core';
-import { UpdateCharacterService } from '../../services/update-character-service';
+import { LifeStatus } from '../../../../../model/rick-and-morty-character';
+import { UpdateCharacterSchema } from '../../../../../model/rick-and-morty-update-character';
+import { RickAndMortyService } from '../../../../../services/rick-and-morty.service';
+import { UpdateCharacterService } from '../../../../../services/update-character-service';
+
 
 @Component({
   selector: 'app-update-rick-and-morty-character-modal',

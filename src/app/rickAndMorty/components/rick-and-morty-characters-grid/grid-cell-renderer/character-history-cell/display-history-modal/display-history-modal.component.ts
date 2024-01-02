@@ -1,14 +1,15 @@
-import { Component, inject } from '@angular/core';
-import { environment } from '../../../../environments/environment';
-import { LifeStatusHistory, RickAndMortyCharacterHistoryResponse, RickAndMortyCharacterHistoryResponseSchema } from '../../model/rick-and-morty-character-history';
-import { injectQuery } from '@tanstack/angular-query-experimental';
-import { DisplayHistoryModalService } from '../../services/display-history-modal.service';
+
 import { lastValueFrom, map } from 'rxjs';
 import { ZodError } from 'zod';
 import { HttpClient } from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Component, inject } from '@angular/core';
+import { injectQuery } from '@tanstack/angular-query-experimental';
+import { environment } from '../../../../../../../environments/environment';
+import { RickAndMortyCharacterHistoryResponseSchema, LifeStatusHistory } from '../../../../../model/rick-and-morty-character-history';
+import { DisplayHistoryModalService } from '../../../../../services/display-history-modal.service';
 
 @Component({
   selector: 'app-display-history-modal',
