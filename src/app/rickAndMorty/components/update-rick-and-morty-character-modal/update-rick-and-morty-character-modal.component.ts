@@ -26,6 +26,11 @@ export class UpdateRickAndMortyCharacterModalComponent {
     newLifeStatus: [this.character()?.lifeStatus ?? LifeStatus.Unknown, Validators.required]
   }));
 
+
+  cancel() {
+    this._updateCharacterModalService.onHideModal();
+  }
+
   onSubmit() {
     const result = UpdateCharacterSchema.safeParse(this.updateCharacterForm().value);
     if (result.success === false) {

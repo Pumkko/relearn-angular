@@ -99,6 +99,8 @@ export class DisplayHistoryModalComponent {
       }
     }
   ]
-
+  close() {
+    this.historyModalService.onHideModal();
+  }
 
 }
