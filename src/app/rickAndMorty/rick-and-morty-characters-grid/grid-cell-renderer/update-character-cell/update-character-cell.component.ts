@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
-import { RickAndMortyCharacter } from '../../../../model/rick-and-morty-character';
 import { DisplayUpdateCharacterModalService } from './display-update-character-modal.service';
+import { RickAndMortyCharacter } from '../../../zod-schema/rick-and-morty-character';
 
 @Component({
   selector: 'app-update-character-cell',

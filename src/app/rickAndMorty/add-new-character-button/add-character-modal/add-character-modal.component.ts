@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { AddNewCharacterSchema } from '../../../model/rick-and-morty-add-character';
-import { LifeStatus } from '../../../model/rick-and-morty-character';
-import { RickAndMortyService } from '../../../services/rick-and-morty.service';
 import { DisplayAddCharacterModalService } from '../display-add-character-modal.service';
+import { RickAndMortyService } from '../../rick-and-morty-characters-grid/rick-and-morty.service';
+import { AddNewCharacterSchema } from '../../zod-schema/rick-and-morty-add-character';
+import { LifeStatus } from '../../zod-schema/rick-and-morty-character';
 
 @Component({
   selector: 'app-add-character-modal',

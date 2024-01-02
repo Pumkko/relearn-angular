@@ -1,8 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, GridApi, GridOptions, GridReadyEvent } from 'ag-grid-community'; // Column Definitions Interface
-import { RickAndMortyCharacter } from '../../model/rick-and-morty-character';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { AddNewCharacterButtonComponent } from '../add-new-character-button/add-new-character-button.component';
@@ -11,6 +9,8 @@ import { UpdateCharacterCellComponent } from './grid-cell-renderer/update-charac
 import { UpdateRickAndMortyCharacterModalComponent } from './grid-cell-renderer/update-character-cell/update-rick-and-morty-character-modal/update-rick-and-morty-character-modal.component';
 import { DisplayHistoryModalComponent } from './grid-cell-renderer/character-history-cell/display-history-modal/display-history-modal.component';
 import { AddCharacterModalComponent } from '../add-new-character-button/add-character-modal/add-character-modal.component';
+import { RickAndMortyCharacter } from '../zod-schema/rick-and-morty-character';
+import { RickAndMortyService } from './rick-and-morty.service';
 
 @Component({
   selector: 'app-rick-and-morty-characters-grid',

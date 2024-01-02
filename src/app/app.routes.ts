@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { RickAndMortyCharactersGridComponent } from './rickAndMorty/components/rick-and-morty-characters-grid/rick-and-morty-characters-grid.component';
 import { MsalGuard } from '@azure/msal-angular';
 import { LoginFailedComponent } from './login-failed/login-failed.component';
+import { RickAndMortyCharactersGridComponent } from './rickAndMorty/rick-and-morty-characters-grid/rick-and-morty-characters-grid.component';
 
 
 export const routes: Routes = [

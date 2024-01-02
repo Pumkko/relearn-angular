@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { ModalInterface, Modal } from 'flowbite';
-import { RickAndMortyCharacter } from '../../../../model/rick-and-morty-character';
+import { RickAndMortyCharacter } from '../../../zod-schema/rick-and-morty-character';
 
 @Injectable({
   providedIn: 'root'

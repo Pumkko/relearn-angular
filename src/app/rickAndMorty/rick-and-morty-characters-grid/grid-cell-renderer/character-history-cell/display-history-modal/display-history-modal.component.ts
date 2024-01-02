@@ -7,9 +7,9 @@ import { ColDef } from 'ag-grid-community';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Component, computed, inject } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
-import { environment } from '../../../../../../../environments/environment';
-import { RickAndMortyCharacterHistoryResponseSchema, LifeStatusHistory } from '../../../../../model/rick-and-morty-character-history';
 import { DisplayHistoryModalService } from '../display-history-modal.service';
+import { environment } from '../../../../../../environments/environment';
+import { RickAndMortyCharacterHistoryResponseSchema, LifeStatusHistory } from '../../../../zod-schema/rick-and-morty-character-history';
 
 @Component({
   selector: 'app-display-history-modal',
