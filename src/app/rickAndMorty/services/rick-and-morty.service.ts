@@ -1,13 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { injectQuery } from '@tanstack/angular-query-experimental';
+import { injectMutation, injectQuery } from '@tanstack/angular-query-experimental';
 import { lastValueFrom, map } from 'rxjs';
-import { ZodError } from 'zod';
-import { RickAndMortyCharacterResponseSchema } from './rick-and-morty-character';
+import { ZodError, z } from 'zod';
+import { RickAndMortyCharacterResponseSchema } from '../model/rick-and-morty-character';
 import { environment } from '../../../environments/environment';
+import { AddNewCharacter } from '../model/rick-and-morty-add-character';
+import { UpdateCharacter } from '../model/rick-and-morty-update-character';
+import { RickAndMortyCharacterHistoryResponseSchema } from '../model/rick-and-morty-character-history'
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RickAndMortyService {
   http = inject(HttpClient)
 
@@ -25,11 +30,31 @@ export class RickAndMortyService {
 
   }))
 
-  private charactersEndpoint = new URL('/Character', environment.apiConfig.uri);
+
+  addNewCharacterMutation = injectMutation((queryClient) => ({
+    mutationFn: (body: AddNewCharacter) => {
+      const charactersEndpoint = new URL('/Character', environment.apiConfig.uri);
+      return lastValueFrom(this.http.post(charactersEndpoint.toString(), body))
+    },
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ['rickAndMortyCharacter'] })
+    }
+  }))
+
+  updateCharacterMutation = injectMutation((queryClient) => ({
+    mutationFn: (body: UpdateCharacter) => {
+      const charactersEndpoint = new URL('/Character', environment.apiConfig.uri);
+      return lastValueFrom(this.http.put(charactersEndpoint.toString(), body))
+    },
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ['rickAndMortyCharacter'] })
+    }
+  }))
 
   private fetchCharacters() {
+    const charactersEndpoint = new URL('/Character', environment.apiConfig.uri);
     return lastValueFrom(
-      this.http.get<unknown>(this.charactersEndpoint.toString())
+      this.http.get<unknown>(charactersEndpoint.toString())
         .pipe(map(result => {
           const parsed = RickAndMortyCharacterResponseSchema.safeParse(result);
           if (!parsed.success) {
@@ -40,5 +65,4 @@ export class RickAndMortyService {
         }))
     )
   }
-
 }

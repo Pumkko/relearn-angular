@@ -70,6 +70,9 @@ This way we have on workflow to deploy the SWA and one to run bicep.
 
 I eventually decided that it was just too complicated, and accepting the bootstrap problem is "okay". let bicep run, make the SWA but deactive workflow generation. Create a new GITHUB secret with the deployment Token after bicep has run. Of course it means the first deploy will fail to actually deploy the web app it will just create it on azure.
 
+- The other problem is the SPA redirect URIs, when a new SWA is created on Azure, the name is completely random, i tried to run a AZ command during the build to get the new URI and add it to the App registration but i faced two problems : 
+  - First az ad app update does not allow us to update an SPA this is well known problem : https://github.com/Azure/azure-cli/issues/25766
+  - Two the way to do it using az rest worked when i ran it with my admin credentials but i failed to run it using generated az ad sp create-for-rba credentials even with an admin role. 
   
 
 ### Running on Azure

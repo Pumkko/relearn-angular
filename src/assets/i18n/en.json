@@ -1,5 +1,20 @@
 {
     "navbar": {
         "home": "Home"
+    },
+    "rickAndMorty": {
+        "gridHeaders": {
+            "name": "Name",
+            "species": "Species",
+            "origin": "Origin",
+            "lifeStatus": "Status",
+            "lifestatusValue": {
+                "0": "Alive",
+                "1": "Dead",
+                "2": "Unknown"
+            },
+            "validSince": "Updated on"
+        },
+        "AddNewCharacterButton": "Add New Character"
     }
 }

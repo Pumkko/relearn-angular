@@ -1,4 +1,4 @@
-<div class="flex justify-center h-full">
+<div class="flex justify-center h-4/5">
     @if (rickAndMortyCharactersQuery.isPending()) {
     Loading...
     }
@@ -6,8 +6,13 @@
     An error has occurred while fetching Rick And Morty Characters
     }
     @if (rickAndMortyCharactersQuery.data(); as characters) {
-    <ag-grid-angular class="ag-theme-quartz justify-items-center h-4/5 w-2/3" [rowData]="characters"
-        [columnDefs]="colDefs">
+    <ag-grid-angular class="ag-theme-quartz justify-items-center h-full w-2/3" [rowData]="characters"
+        [columnDefs]="colDefs" [defaultColDef]="defaultColDef" (gridReady)="onGridReady($event)">
     </ag-grid-angular>
     }
+</div>
+<div class="flex justify-center mt-2">
+    <app-add-new-character-button />
+    <app-update-rick-and-morty-character-modal></app-update-rick-and-morty-character-modal>
+    <app-display-history-modal></app-display-history-modal>
 </div>
