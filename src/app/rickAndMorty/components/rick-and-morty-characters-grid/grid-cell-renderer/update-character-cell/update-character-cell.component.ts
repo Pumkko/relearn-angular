@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
 import { RickAndMortyCharacter } from '../../../../model/rick-and-morty-character';
-import { UpdateCharacterService } from '../../../../services/update-character-service';
+import { DisplayUpdateCharacterModalService } from './display-update-character-modal.service';
 
 @Component({
   selector: 'app-update-character-cell',
@@ -13,7 +13,7 @@ import { UpdateCharacterService } from '../../../../services/update-character-se
 export class UpdateCharacterCellComponent implements ICellRendererAngularComp {
   params!: ICellRendererParams<RickAndMortyCharacter>;
 
-  private _modalService = inject(UpdateCharacterService);
+  private _modalService = inject(DisplayUpdateCharacterModalService);
   agInit(params: ICellRendererParams<RickAndMortyCharacter>) {
     this.params = params;
   }

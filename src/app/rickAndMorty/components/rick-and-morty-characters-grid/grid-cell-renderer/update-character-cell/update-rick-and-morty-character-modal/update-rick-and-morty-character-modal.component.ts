@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LifeStatus } from '../../../../../model/rick-and-morty-character';
 import { UpdateCharacterSchema } from '../../../../../model/rick-and-morty-update-character';
 import { RickAndMortyService } from '../../../../../services/rick-and-morty.service';
-import { UpdateCharacterService } from '../../../../../services/update-character-service';
+import { DisplayUpdateCharacterModalService } from '../display-update-character-modal.service';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class UpdateRickAndMortyCharacterModalComponent {
 
   private fb = inject(FormBuilder)
   private _rickAndMortyService = inject(RickAndMortyService);
-  private _updateCharacterModalService = inject(UpdateCharacterService);
+  private _updateCharacterModalService = inject(DisplayUpdateCharacterModalService);
 
 
   character = computed(() => this._updateCharacterModalService.currentlySelectedCharacter());

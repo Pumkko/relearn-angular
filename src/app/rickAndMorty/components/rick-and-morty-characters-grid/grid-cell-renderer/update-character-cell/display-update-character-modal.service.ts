@@ -1,11 +1,11 @@
 import { Injectable, inject, signal } from '@angular/core';
-import { RickAndMortyCharacter } from '../model/rick-and-morty-character';
+import { RickAndMortyCharacter } from '../../../../model/rick-and-morty-character';
 import { Modal, ModalInterface } from 'flowbite';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UpdateCharacterService {
+export class DisplayUpdateCharacterModalService {
 
   modal: ModalInterface | null = null;
 

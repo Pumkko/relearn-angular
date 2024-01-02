@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
-import { DisplayHistoryModalService } from '../../../../services/display-history-modal.service';
+import { DisplayHistoryModalService } from './display-history-modal.service';
 
 @Component({
   selector: 'app-character-history-cell',

@@ -5,7 +5,7 @@ import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { AddNewCharacterSchema } from '../../model/rick-and-morty-add-character';
 import { number } from 'zod';
 import { LifeStatus } from '../../model/rick-and-morty-character';
-import { DisplayAddCharacterModalService } from '../../services/display-add-character-modal.service';
+import { DisplayAddCharacterModalService } from './display-add-character-modal.service';
 
 @Component({
   selector: 'app-add-new-character-button',

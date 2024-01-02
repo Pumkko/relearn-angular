@@ -9,7 +9,7 @@ import { Component, computed, inject } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { environment } from '../../../../../../../environments/environment';
 import { RickAndMortyCharacterHistoryResponseSchema, LifeStatusHistory } from '../../../../../model/rick-and-morty-character-history';
-import { DisplayHistoryModalService } from '../../../../../services/display-history-modal.service';
+import { DisplayHistoryModalService } from '../display-history-modal.service';
 
 @Component({
   selector: 'app-display-history-modal',
