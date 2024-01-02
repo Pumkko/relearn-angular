@@ -1,22 +1,23 @@
 import { z } from "zod";
 
-export enum LifeStatus
-{
+export enum LifeStatus {
     Alive = 0,
     Dead = 1,
     Unknown = 2,
 }
 
-export const RickAndMortyCharacterResponseSchema = z.array(
-    z.object({
-        id: z.string().uuid(),
-        name: z.string(),
-        lifeStatus: z.nativeEnum(LifeStatus),
-        origin: z.string(),
-        species: z.string(),
-        validSince: z.string().datetime()
+export const RickAndMortySingleCharacterSchema = z.object({
+    id: z.string().uuid(),
+    name: z.string(),
+    lifeStatus: z.nativeEnum(LifeStatus),
+    origin: z.string(),
+    species: z.string(),
+    validSince: z.string().datetime()
 
-    })
+});
+
+export const RickAndMortyCharacterResponseSchema = z.array(
+    RickAndMortySingleCharacterSchema
 )
 
 // Weird typescript does not have it

@@ -7,6 +7,7 @@ import { RickAndMortyCharacterResponseSchema } from '../model/rick-and-morty-cha
 import { environment } from '../../../environments/environment';
 import { AddNewCharacter } from '../model/rick-and-morty-add-character';
 import { UpdateCharacter } from '../model/rick-and-morty-update-character';
+import { RickAndMortyCharacterHistoryResponseSchema } from '../model/rick-and-morty-character-history'
 
 
 @Injectable({
@@ -64,5 +65,4 @@ export class RickAndMortyService {
         }))
     )
   }
-
 }

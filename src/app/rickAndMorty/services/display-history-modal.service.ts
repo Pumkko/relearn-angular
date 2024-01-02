@@ -1,17 +1,17 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
+import { ModalInterface, Modal } from 'flowbite';
 import { RickAndMortyCharacter } from '../model/rick-and-morty-character';
-import { Modal, ModalInterface } from 'flowbite';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UpdateCharacterService {
+export class DisplayHistoryModalService {
 
   modal: ModalInterface | null = null;
 
   currentlySelectedCharacter = signal<RickAndMortyCharacter | null>(null);
   onShowModal(character: RickAndMortyCharacter | null | undefined) {
-    const $modalElement: HTMLElement | null = document.querySelector('#update-character-modal');
+    const $modalElement: HTMLElement | null = document.querySelector('#character-history-modal');
     this.modal = new Modal($modalElement, {}, {});
     if (!character) {
       console.error("onShowUpdateModal but data is undefined");

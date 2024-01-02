@@ -1,4 +1,4 @@
-import { Component, inject} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RickAndMortyService } from '../../services/rick-and-morty.service';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, GridApi, GridOptions, GridReadyEvent } from 'ag-grid-community'; // Column Definitions Interface
@@ -9,11 +9,12 @@ import { AddNewCharacterButtonComponent } from '../add-new-character-button/add-
 import { CharacterHistoryCellComponent } from './grid-cell-renderer/character-history-cell/character-history-cell.component';
 import { UpdateCharacterCellComponent } from './grid-cell-renderer/update-character-cell/update-character-cell.component';
 import { UpdateRickAndMortyCharacterModalComponent } from '../update-rick-and-morty-character-modal/update-rick-and-morty-character-modal.component';
+import { DisplayHistoryModalComponent } from '../display-history-modal/display-history-modal.component';
 
 @Component({
   selector: 'app-rick-and-morty-characters-grid',
   standalone: true,
-  imports: [AgGridModule, TranslateModule, AddNewCharacterButtonComponent, UpdateRickAndMortyCharacterModalComponent],
+  imports: [AgGridModule, TranslateModule, AddNewCharacterButtonComponent, UpdateRickAndMortyCharacterModalComponent, DisplayHistoryModalComponent],
   templateUrl: './rick-and-morty-characters-grid.component.html',
 })
 export class RickAndMortyCharactersGridComponent {
