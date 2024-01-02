@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { environment } from '../../../../../../../environments/environment';
 import { RickAndMortyCharacterHistoryResponseSchema, LifeStatusHistory } from '../../../../../model/rick-and-morty-character-history';
@@ -23,9 +23,11 @@ export class DisplayHistoryModalComponent {
   http = inject(HttpClient);
   translateService = inject(TranslateService);
 
+  characterId = computed(() => this.historyModalService.currentlySelectedCharacter()?.id ?? "");
+
   historyQuery = injectQuery(() => ({
-    queryKey: ['rickAndMortyCharacterHistory'],
-    queryFn: () => this.fetchCharacterHistory(this.historyModalService.currentlySelectedCharacter()?.id ?? ""),
+    queryKey: ['rickAndMortyCharacterHistory', this.characterId()],
+    queryFn: () => this.fetchCharacterHistory(this.characterId()),
     enabled: this.historyModalService.currentlySelectedCharacter() !== null,
     retry(failureCount, error) {
       console.error(error);
@@ -77,7 +79,7 @@ export class DisplayHistoryModalComponent {
 
         const date = new Date(params.data.validFrom);
         const formatted = new Intl.DateTimeFormat(this.translateService.currentLang, {
-          dateStyle:  'medium',
+          dateStyle: 'medium',
           timeStyle: 'medium'
         }).format(date)
         return formatted;
@@ -93,7 +95,7 @@ export class DisplayHistoryModalComponent {
 
         const date = new Date(params.data.validTo);
         const formatted = new Intl.DateTimeFormat(this.translateService.currentLang, {
-          dateStyle:  'medium',
+          dateStyle: 'medium',
           timeStyle: 'medium'
         }).format(date)
         return formatted;
