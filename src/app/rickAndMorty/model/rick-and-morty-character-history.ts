@@ -12,6 +12,9 @@ export const RickAndMortyCharacterHistoryResponseSchema = z.object({
     
 })
 
+// Weird typescript does not have it
+type ArraySubType<T> = T extends (infer S)[] ? S : never
 
 export type RickAndMortyCharacterHistoryResponse = z.infer<typeof RickAndMortyCharacterHistoryResponseSchema>
+export type LifeStatusHistory = ArraySubType<RickAndMortyCharacterHistoryResponse["lifeStatusHistory"]>
 
