@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -6,6 +6,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   standalone: true,
   imports: [],
   templateUrl: './navbar-language-french.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarLanguageFrenchComponent {
 

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { TranslateModule } from '@ngx-translate/core';
 import { DisplayAddCharacterModalService } from './display-add-character-modal.service';
@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   imports: [TranslateModule, ReactiveFormsModule],
   templateUrl: './add-new-character-button.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddNewCharacterButtonComponent {
 

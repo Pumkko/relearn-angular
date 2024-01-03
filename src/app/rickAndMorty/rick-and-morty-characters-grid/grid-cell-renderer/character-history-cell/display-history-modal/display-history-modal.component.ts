@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { DisplayHistoryModalService } from '../display-history-modal.service';
 import { environment } from '../../../../../../environments/environment';
@@ -16,15 +16,16 @@ import { RickAndMortyCharacterHistoryResponseSchema, LifeStatusHistory } from '.
   standalone: true,
   imports: [AgGridModule, TranslateModule],
   templateUrl: './display-history-modal.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DisplayHistoryModalComponent {
 
   historyModalService = inject(DisplayHistoryModalService);
-  http = inject(HttpClient);
   translateService = inject(TranslateService);
-
+  
   characterId = computed(() => this.historyModalService.currentlySelectedCharacter()?.id ?? "");
-
+  
+  http = inject(HttpClient);
   historyQuery = injectQuery(() => ({
     queryKey: ['rickAndMortyCharacterHistory', this.characterId()],
     queryFn: () => this.fetchCharacterHistory(this.characterId()),

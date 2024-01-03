@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, GridApi, GridOptions, GridReadyEvent } from 'ag-grid-community'; // Column Definitions Interface
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -17,6 +17,7 @@ import { AddNewCharacterButtonComponent } from '../add-new-character/add-new-cha
   standalone: true,
   imports: [AgGridModule, TranslateModule, AddNewCharacterButtonComponent, AddCharacterModalComponent, UpdateRickAndMortyCharacterModalComponent, DisplayHistoryModalComponent],
   templateUrl: './rick-and-morty-characters-grid.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RickAndMortyCharactersGridComponent {
 

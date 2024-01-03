@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { DisplayUpdateCharacterModalService } from '../display-update-character-modal.service';
@@ -12,6 +12,7 @@ import { RickAndMortyService } from '../../../rick-and-morty.service';
   standalone: true,
   imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './update-rick-and-morty-character-modal.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UpdateRickAndMortyCharacterModalComponent {
 

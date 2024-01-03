@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
 import { DisplayUpdateCharacterModalService } from './display-update-character-modal.service';
@@ -9,6 +9,7 @@ import { RickAndMortyCharacter } from '../../../zod-schema/rick-and-morty-charac
   standalone: true,
   imports: [],
   templateUrl: './update-character-cell.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UpdateCharacterCellComponent implements ICellRendererAngularComp {
   params!: ICellRendererParams<RickAndMortyCharacter>;
